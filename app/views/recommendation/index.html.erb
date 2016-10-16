@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Get Recommended videos</h1>
+
+  <%= form_for @recommendation, url: fetch_recommendations_path, remote: true  do |f| %>
+    <div class="form-group">
+      <%= f.label :link %>
+      <div><%= f.text_field :link, class: 'form-control', placeholder: 'Enter any URL', required: true %></div>
+      <span class="error-message hide text-danger">Invalid Link</span>
+    </div>
+
+    <%= f.submit 'Get videos', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<div id="recommendation-container"></div>
