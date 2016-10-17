@@ -19,7 +19,7 @@
       <% if current_user %>
         <li class="hide"><%= link_to 'Upload Video', new_video_upload_path %></li>
       <% end %>
-      <li><%= link_to 'Get Recommendations', recommendation_index_path %></li>
+      <li class="hide"><%= link_to 'Get Recommendations', recommendation_index_path %></li>
     </ul>
     <ul class="nav navbar-nav pull-right hide">
       <% if current_user %>
