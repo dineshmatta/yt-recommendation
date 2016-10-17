@@ -3,7 +3,6 @@
 
   <%= form_for @recommendation, url: fetch_recommendations_path, remote: true  do |f| %>
     <div class="form-group">
-      <%= f.label :link %>
       <div><%= f.text_field :link, class: 'form-control', placeholder: 'Enter any URL', required: true %></div>
       <span class="error-message hide text-danger">Invalid Link</span>
     </div>
@@ -19,7 +18,7 @@
   <div class="rect4"></div>
   <div class="rect5"></div>
 </div>
-  
+
 <div id="recommendation-container">
 
 </div>
