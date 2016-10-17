@@ -15,6 +15,8 @@ group :development do
 end
 
 group :production do
+  ## Required by Heroku
+  gem 'pg'
   gem 'rails_12factor'
 end
 
