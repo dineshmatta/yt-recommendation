@@ -2,7 +2,7 @@
 	$('#recommendation_link').parent().addClass('has-error');
 	$(".error-message").removeClass('hide');
 <%else%>
-	$('#recommendation_link').parent().removeClass('alert alert-danger');
+	$('#recommendation_link').parent().removeClass('has-error');
 	$(".error-message").addClass('hide');
 	$("#recommendation-container").html("<%= escape_javascript(render partial: 'show_recommendation', locals: { videos: @videos } ) %>"); 
 <%end%>
