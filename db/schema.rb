@@ -10,31 +10,3 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20141224111838) do
-
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "token"
-    t.string   "uid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "users", ["token"], name: "index_users_on_token"
-  add_index "users", ["uid"], name: "index_users_on_uid", unique: true
-
-  create_table "videos", force: :cascade do |t|
-    t.string   "link"
-    t.string   "title"
-    t.datetime "published_at"
-    t.integer  "likes"
-    t.integer  "dislikes"
-    t.string   "uid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "videos", ["uid"], name: "index_videos_on_uid"
-
-end
