@@ -13,17 +13,6 @@
     <div class="navbar-header">
       <%= link_to 'YieldBlue', root_path, class: 'navbar-brand' %>
     </div>
-<<<<<<< HEAD
-    <ul class="nav navbar-nav">
-      <li class="hide"><%= link_to 'Videos', root_path %></li>
-      <li class="hide"><%= link_to 'Add Video', new_video_path %></li>
-      <% if current_user %>
-        <li class="hide"><%= link_to 'Upload Video', new_video_upload_path %></li>
-      <% end %>
-      <li class="hide"><%= link_to 'Get Recommendations', recommendation_index_path %></li>
-    </ul>
-=======
->>>>>>> c3a968ab92cd231140ac2e9cbc286d0cd086303c
     <ul class="nav navbar-nav pull-right hide">
       <% if current_user %>
         <li><span><%= current_user.name %></span></li>
