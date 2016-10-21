@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root to: 'recommendation#index'
 
   resources :recommendation
+
+  namespace :embed do
+     resources :recommendation, param: :url, only: :show, path: "" # -> domain.com/embed/1
+  end
   
   match 'fetch_recommendations', to: 'recommendation#fetch_recommendations', via: [:post]
   
