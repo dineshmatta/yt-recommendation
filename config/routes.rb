@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :recommendation
 
   namespace :embed do
-     resources :recommendation, param: :url, only: :show, path: "" # -> domain.com/embed/1
+     #resources :recommendation, param: :url, only: :show, path: "" # -> domain.com/embed/1
+     get '*url', to: 'recommendation#show'
   end
   
   match 'fetch_recommendations', to: 'recommendation#fetch_recommendations', via: [:post]

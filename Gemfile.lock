@@ -117,7 +117,9 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.18.1)
+    pg (0.18.1-x86-mingw32)
     rack (1.6.0)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -211,6 +213,7 @@ DEPENDENCIES
   jquery-rails
   omniauth-google-oauth2
   pg
+  rack-cors
   rails (= 4.2.0)
   rails-observers
   rails_12factor

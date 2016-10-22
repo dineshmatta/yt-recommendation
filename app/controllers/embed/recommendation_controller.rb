@@ -1,7 +1,9 @@
-class RecommendationController < ApplicationController
+class Embed::RecommendationController < ApplicationController
 	def show
 		## Get the url from params
 		url = params[:url]
+    p "EEEEEEEEEEEEEEEEEE\n\n"
+    p url
 
 		## Extract keywords/topics from url
 

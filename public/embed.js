@@ -5,7 +5,7 @@ window.onload = function() {
 
    //iFrame
    var iframe = document.createElement('iframe');
-   iframe.style.display = "none";
-   iframe.src = "embed/" + url;
+   //iframe.style.display = "none";
+   iframe.src = "http://yieldblue-yt-222369.nitrousapp.com/embed/"+url;
    document.body.appendChild(iframe);
 };
