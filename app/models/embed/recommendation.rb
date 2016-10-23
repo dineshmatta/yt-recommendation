@@ -7,18 +7,12 @@ class Embed::Recommendation
 	validates :link, :format => URI::regexp(%w(http https))
 
 	def self.get_topics(url)
-    p "CCCCCCCCC\n\n"
-    p url
     
 		## Get the topics from Alchemy API
 		results = AlchemyAPI::KeywordExtraction.new.search(url: url)
-    
-    p "IIIIIIIIIIIIIII\n\n"
-    
-    p results
 
 		## Select the most relevant keyword with relevancy index >= 0.6
-		results.select! {|item| item["relevance"] >= "0.6"}
+		results.select! {|item| item["relevance"] >= "0.5"}
 
 		## parse the response and extract the keywords
 		keywords = results.collect {|item| item["text"]}
@@ -36,8 +30,8 @@ class Embed::Recommendation
 		p videos_collection.size
 
 		videos_collection.map(&:id)
-		ids = videos_collection.map(&:id).take(1)
-		snippets = videos_collection.map(&:snippet).take(1)
+		ids = videos_collection.map(&:id).take(3)
+		snippets = videos_collection.map(&:snippet).take(3)
 		collection = Hash[ids.zip(snippets.map {|i| i})]
 		return collection.collect {|key, video| {id: key, title: video.title, desription: video.description, published_at: video.published_at, thumbnail_url: video.thumbnail_url}}
 	end

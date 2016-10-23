@@ -7,7 +7,7 @@ class Embed::RecommendationController < ApplicationController
     topics = Embed::Recommendation.get_topics(url)
     
 		## Get the recommended videos from extracted keywords
-    @videos = Recommendation.get_recommendations(topics)
+    @videos = Embed::Recommendation.get_recommendations(topics)
     
 		## respond with recommended videos
 		render :layout => false
