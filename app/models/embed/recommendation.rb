@@ -12,7 +12,7 @@ class Embed::Recommendation
 		results = AlchemyAPI::KeywordExtraction.new.search(url: url)
 
 		## Select the most relevant keyword with relevancy index >= 0.6
-		results.select! {|item| item["relevance"] >= "0.5"}
+		results.select! {|item| item["relevance"] >= "0.6"}
 
 		## parse the response and extract the keywords
 		keywords = results.collect {|item| item["text"]}
@@ -31,9 +31,10 @@ class Embed::Recommendation
 
 		videos_collection.map(&:id)
 		ids = videos_collection.map(&:id).take(3)
-		snippets = videos_collection.map(&:snippet).take(3)
-		collection = Hash[ids.zip(snippets.map {|i| i})]
-		return collection.collect {|key, video| {id: key, title: video.title, desription: video.description, published_at: video.published_at, thumbnail_url: video.thumbnail_url}}
+		return ids
+		# snippets = videos_collection.map(&:snippet).take(3)
+		# collection = Hash[ids.zip(snippets.map {|i| i})]
+		# return collection.collect {|key, video| {id: key, title: video.title, desription: video.description, published_at: video.published_at, thumbnail_url: video.thumbnail_url}}
 	end
 
 end
