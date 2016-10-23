@@ -6,7 +6,7 @@ window.onload = function() {
    //iFrame
    var iframe = document.createElement('iframe');
    //iframe.style.display = "none";
-   iframe.src = "http://yieldblue-yt-222369.nitrousapp.com/embed?url="+encodeURIComponent(url);
+   iframe.src = "https://yieldblue-recommendation.herokuapp.com/embed?url="+encodeURIComponent(url);
    iframe.width = "1000px";
    iframe.height = "500px";
    document.body.appendChild(iframe);
