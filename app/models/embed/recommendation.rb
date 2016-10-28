@@ -7,12 +7,12 @@ class Embed::Recommendation
 	validates :link, :format => URI::regexp(%w(http https))
 
 	def self.get_topics(url)
-    
 		## Get the topics from Alchemy API
 		results = AlchemyAPI::KeywordExtraction.new.search(url: url)
 
 		## Select the most relevant keyword with relevancy index >= 0.6
-		results.select! {|item| item["relevance"] >= "0.6"}
+		#results.select! {|item| item["relevance"] >= "0.6"}
+		results = results.take(3);
 
 		## parse the response and extract the keywords
 		keywords = results.collect {|item| item["text"]}
@@ -26,15 +26,12 @@ class Embed::Recommendation
 
 	def self.get_recommendations(keywords)
 		videos = Yt::Collections::Videos.new
-		videos_collection = videos.where(part: 'snippet', q: keywords, type: 'video', safe_search: 'none', order: 'viewCount')
+		videos_collection = videos.where(part: 'snippet', q: keywords, type: 'video', safe_search: 'none')
 		p videos_collection.size
 
 		videos_collection.map(&:id)
 		ids = videos_collection.map(&:id).take(3)
 		return ids
-		# snippets = videos_collection.map(&:snippet).take(3)
-		# collection = Hash[ids.zip(snippets.map {|i| i})]
-		# return collection.collect {|key, video| {id: key, title: video.title, desription: video.description, published_at: video.published_at, thumbnail_url: video.thumbnail_url}}
 	end
 
 end
