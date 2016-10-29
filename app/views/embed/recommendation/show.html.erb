@@ -2,7 +2,7 @@
   <div class="container">
       <% @video_ids.each_with_index do |video_id, index| %>
         <% if video_id %>
-            <div class="yt_video thumbnail embed-container" style="width: <%=index == 0 || index == 1 ? '33%' : 'auto'; %>">
+            <div class="yt_video thumbnail embed-container" style="height:180px; width: <%=index == 0 || index == 1 ? '33%' : 'auto'; %>">
               <%= embed(video_id) %>
             </div>
         <% end %>
