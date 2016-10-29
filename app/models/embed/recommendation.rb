@@ -17,16 +17,17 @@ class Embed::Recommendation
 		## parse the response and extract the keywords
 		keywords = results.collect {|item| item["text"]}
 
-		if(keywords.length > 0)
-			keywords = keywords.join('|').tr(" ", "+")
-		end
+		# if(keywords.length > 0)
+		# 	keywords = keywords.join('|').tr(" ", "+")
+		# end
 
 		return keywords
 	end
 
 	def self.get_recommendations(keywords)
 		videos = Yt::Collections::Videos.new
-		videos_collection = videos.where(part: 'snippet', q: keywords, type: 'video', safe_search: 'none', relevanceLanguage: 'en', regionCode: 'US')
+		videos_collection = videos.where(q: keywords, safe_search: 'none', order: 'relevance')
+		#videos_collection = videos.where(part: 'snippet', q: keywords, type: 'video', safe_search: 'none', relevanceLanguage: 'en')
 		p videos_collection.size
 
 		videos_collection.map(&:id)
