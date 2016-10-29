@@ -23,7 +23,7 @@ class Recommendation
 		# 	keywords = keywords.join('|').tr(" ", "+")
 		# end
 
-		return keywords
+		return keywords[0]
 	end
 
 	def self.get_recommendations(keywords)
