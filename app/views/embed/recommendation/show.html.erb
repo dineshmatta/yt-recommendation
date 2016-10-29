@@ -1,19 +1,11 @@
 <% if @video_ids.any? %>
   <div class="container">
-    <h1>Recommended videos</h1>
-    <div id="player-wrapper"></div>
-    <% @video_ids.in_groups_of(3) do |group| %>
-      <div class="row">
-        <% group.each do |video_id| %>
-          <% if video_id %>
-            <div class="col-md-4">
-              <div class="yt_video thumbnail embed-container">
-                <%= embed(video_id) %>
-              </div>
+      <% @video_ids.each_with_index do |video_id, index| %>
+        <% if video_id %>
+            <div class="yt_video thumbnail embed-container" style="<%=index == 0 || index == 1 ? '33%' : 'auto'; %>">
+              <%= embed(video_id) %>
             </div>
-          <% end %>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
   </div>
 <% end %>
