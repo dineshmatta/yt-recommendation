@@ -14,7 +14,7 @@ class Recommendation
 
 		## Select the most relevant keyword with relevancy index >= 0.6
 		#results.select! {|item| item["relevance"] >= "0.6"}
-		results = results.take(3);
+		results = results.take(1);
 
 		## parse the response and extract the keywords
 		keywords = results.collect {|item| item["text"]}
