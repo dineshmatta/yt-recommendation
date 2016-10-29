@@ -1,7 +1,7 @@
 Yt.configure do |config|
-  config.client_id = '757826175150-i5b9tb0pahuci7j6akn90rc6at35e4j3.apps.googleusercontent.com'#ENV['YT_CLIENT_ID']
-  config.client_secret = 'XLtQcoRTN-QgKR_uhbXhmQvQ'#ENV['YT_CLIENT_SECRET']
-  config.api_key = 'AIzaSyAEbqBiAh-aRQ9Iuys_7Pr1_3GJWRn8RF8'#ENV['YT_KEY']
+  config.client_id = '953503381443-5tu5259born5k2q08qqvhvj4506krdpn.apps.googleusercontent.com'#ENV['YT_CLIENT_ID']
+  config.client_secret = 'gAEoKEsgXZweK0AgILXIEScJ'#ENV['YT_CLIENT_SECRET']
+  config.api_key = 'AIzaSyDzPRK2t3x8gYYbYdhaja7tDr85CnF26nE'#ENV['YT_KEY']
 end
 
 AlchemyAPI.configure do |config|
