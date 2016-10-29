@@ -26,7 +26,7 @@ class Embed::Recommendation
 
 	def self.get_recommendations(keywords)
 		videos = Yt::Collections::Videos.new
-		videos_collection = videos.where(part: 'snippet', q: keywords, type: 'video', safe_search: 'none')
+		videos_collection = videos.where(part: 'snippet', q: keywords, type: 'video', safe_search: 'none', relevanceLanguage: 'en')
 		p videos_collection.size
 
 		videos_collection.map(&:id)
