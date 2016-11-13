@@ -1,7 +1,3 @@
-require 'rest-client'
-require 'openssl'
-require 'base64'
-
 class RecommendationService
 
     def initialize(params)
