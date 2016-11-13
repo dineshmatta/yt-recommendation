@@ -5,6 +5,12 @@ ruby '2.0.0'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 
+# Use mysql as the database for Active Record
+gem 'mysql2', '~> 0.3.18'
+
+gem 'protected_attributes'
+
+
 group :development do
   gem 'sqlite3'
   gem 'eventmachine'

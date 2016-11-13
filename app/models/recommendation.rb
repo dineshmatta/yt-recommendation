@@ -1,12 +1,13 @@
 
 
-class Recommendation 
+class Recommendation < ActiveRecord::Base
+	serialize :keywords
 
-	include ActiveModel::Model
+	#include ActiveModel::Model
 
-	attr_accessor :link
+	#attr_accessor :link
 
-	validates :link, :format => URI::regexp(%w(http https))
+	validates :url, :format => URI::regexp(%w(http https))
 
 	def self.get_topics(url)
 		## Get the topics from Alchemy API

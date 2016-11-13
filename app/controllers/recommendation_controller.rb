@@ -4,21 +4,38 @@ class RecommendationController < ApplicationController
   end
 
   def fetch_recommendations
-  	@recommendation = Recommendation.new(params[:recommendation])
-  	link = params[:recommendation][:link]
+  	@recommendation = Recommendation.new(user_params)
+  	link = params[:recommendation][:url]
 
   	if(@recommendation.valid?)
 
 	  	##Step 1 : Get the topics
-	  	topics = Recommendation.get_topics(link)
+	  	topics = fetch_topics(link)
 
 	  	##Step 2 : Get the recommended videos
 	  	@video_ids = Recommendation.get_recommendations(topics)
 
 	  	render "show"
-	  else
+	else
 	  	render "show"
-	  	#render :index
-	  end
+	end
+  end
+
+  private
+
+  def fetch_topics(link)
+  	## Check if exsting record present for url, otherwise fetch it from database
+  	recommendation = Recommendation.where(url: link)
+  	if(!recommendation.blank?)
+		topics = recommendation.first.keywords.first
+  	else
+		topics = Recommendation.get_topics(link)
+		Recommendation.create(url: link, keywords: [topics])
+		topics
+  	end
+  end
+  
+  def user_params
+	params.require(:recommendation).permit(:url, :keywords)
   end
 end
