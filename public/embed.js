@@ -6,7 +6,7 @@ window.onload = function() {
    //iFrame
    var iframe = document.createElement('iframe');
    iframe.style.border = "none";
-   iframe.src = "https://yieldblue-recommendation.herokuapp.com/embed?url="+encodeURIComponent(url);
+   iframe.src = "http://54.173.125.80/embed?url="+encodeURIComponent(url);
    iframe.width = "1000px";
    iframe.height = "500px";
    document.body.appendChild(iframe);

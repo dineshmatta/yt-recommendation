@@ -32,7 +32,7 @@ module YtVideosV3
       allow do
         origins '*'
 
-        resource 'http://yieldblue-yt-222369.nitrousapp.com/embed.js',
+        resource 'http://54.173.125.80/embed.js',
           :headers => :any,
           :methods => [:get, :post],
           :credentials => true,
