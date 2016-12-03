@@ -11,26 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113074903) do
-
-  create_table "posts", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  create_table "recommendation_news", force: :cascade do |t|
-    t.text     "url",        limit: 65535
-    t.text     "keywords",   limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
+ActiveRecord::Schema.define(version: 20161203154921) do
 
   create_table "recommendations", force: :cascade do |t|
-    t.text     "url",        limit: 65535
-    t.text     "keywords",   limit: 65535
+    t.text "url",      limit: 65535
+    t.text "keywords", limit: 65535
+  end
+
+  create_table "trackings", force: :cascade do |t|
+    t.text     "page_url",   limit: 65535
+    t.text     "video_url",  limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end

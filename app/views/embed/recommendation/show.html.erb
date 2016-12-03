@@ -3,9 +3,72 @@
       <% @video_ids.each_with_index do |video_id, index| %>
         <% if video_id %>
             <div class="yt_video thumbnail embed-container" style="height:180px; width: <%=index == 0 || index == 1 ? '33%' : 'auto'; %>">
-              <%= embed(video_id) %>
+              <%= content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{video_id}?enablejsapi=1&origin=https://youtube-rails-dineshdhoom.c9users.io", id: 'recommend'+index.to_s, docUrl: @url) %>
             </div>
         <% end %>
       <% end %>
   </div>
 <% end %>
+<script type="text/javascript">
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    // This function takes the existing <iframe> (and YouTube player)
+    // with id 'player1' and adds an event listener for state changes.
+    var player1, player2, player3;
+    function onYouTubeIframeAPIReady() {
+      console.log('vvvvvvvvvvvvvv');
+      console.log(document.getElementById('recommend0'))
+      this.url = document.getElementById('recommend0').getAttribute('docUrl');
+      this.videoUrl = document.getElementById('recommend0').getAttribute('src');
+      player1 = new YT.Player('recommend0', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+      console.log(player1);
+    }
+    
+    function onPlayerReady(event){
+      console.log("***************************************************");
+    }
+    
+    function onPlayerStateChange(event) {
+      console.log('insideeeeeeeeeeeeeeeeee')
+      switch(event.data) {
+        case YT.PlayerState.PLAYING:
+          console.log('playing')
+          
+          var xmlhttp = new XMLHttpRequest();
+
+          xmlhttp.onreadystatechange = function() {
+              if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+                 if (xmlhttp.status == 200) {
+                     //document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                 }
+                 else if (xmlhttp.status == 400) {
+                    //alert('There was an error 400');
+                 }
+                 else {
+                     //alert('something else other than 200 was returned');
+                 }
+              }
+          };
+          xmlhttp.open("POST", "https://youtube-rails-dineshdhoom.c9users.io/track", true);
+          xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          xmlhttp.send(encodeURI('page_url=' + this.url + '&video_url='+this.videoUrl));
+          break;
+        case YT.PlayerState.PAUSED:
+         console.log('paused')
+          break;
+        case YT.PlayerState.ENDED:
+          console.log('finished')
+          break;
+        default:
+          return;
+      }
+    }
+</script>

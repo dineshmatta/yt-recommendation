@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   
   match 'fetch_recommendations', to: 'recommendation#fetch_recommendations', via: [:post]
   
+  match 'track', to: 'trackings#track', via: [:post]
+  
   ##For User authentication
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: :logout

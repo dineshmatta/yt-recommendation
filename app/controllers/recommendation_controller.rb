@@ -1,4 +1,5 @@
 class RecommendationController < ApplicationController
+	
   def index
   	@recommendation = Recommendation.new
   end
@@ -7,7 +8,7 @@ class RecommendationController < ApplicationController
   	@recommendation = Recommendation.new(user_params)
   	link = params[:recommendation][:url]
 
-  	if(@recommendation.valid?)
+		if(@recommendation.valid?)
 
 	  	##Step 1 : Get the topics
 	  	topics = fetch_topics(link)
@@ -16,9 +17,9 @@ class RecommendationController < ApplicationController
 	  	@video_ids = Recommendation.get_recommendations(topics)
 
 	  	render "show"
-	else
+		else
 	  	render "show"
-	end
+		end
   end
 
   private
@@ -36,6 +37,6 @@ class RecommendationController < ApplicationController
   end
   
   def user_params
-	params.require(:recommendation).permit(:url, :keywords)
+		params.require(:recommendation).permit(:url, :keywords)
   end
 end

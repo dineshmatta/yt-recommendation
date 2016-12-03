@@ -4,11 +4,11 @@
     <div id="player-wrapper"></div>
     <% @video_ids.in_groups_of(3) do |group| %>
       <div class="row">
-        <% group.each do |video_id| %>
+        <% group.each_with_index do |video_id, index| %>
           <% if video_id %>
             <div class="col-md-4">
               <div class="yt_video thumbnail embed-container">
-                <%= embed(video_id) %>
+                <%= embed(video_id, index) %>
               </div>
             </div>
           <% end %>
