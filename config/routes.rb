@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :trackings
+
   root to: 'recommendation#index'
 
   resources :recommendation
@@ -9,9 +11,7 @@ Rails.application.routes.draw do
   end
   
   match 'fetch_recommendations', to: 'recommendation#fetch_recommendations', via: [:post]
-  
-  match 'track', to: 'trackings#track', via: [:post]
-  
+    
   ##For User authentication
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: :logout

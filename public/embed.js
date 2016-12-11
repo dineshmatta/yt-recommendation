@@ -7,7 +7,7 @@ window.onload = function() {
    var iframe = document.createElement('iframe');
    iframe.style.border = "none";
    iframe.id = "yieldblue_main_iframe";
-   iframe.src = "https://youtube-rails-dineshdhoom.c9users.io/embed?url="+encodeURIComponent(url);
+   iframe.src = "http://localhost:3000/embed?url="+encodeURIComponent(url);
    iframe.width = "1000px";
    iframe.height = "500px";
    document.body.appendChild(iframe);

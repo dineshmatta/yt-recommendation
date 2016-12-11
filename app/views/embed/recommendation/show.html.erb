@@ -3,7 +3,7 @@
       <% @video_ids.each_with_index do |video_id, index| %>
         <% if video_id %>
             <div class="yt_video thumbnail embed-container" style="height:180px; width: <%=index == 0 || index == 1 ? '33%' : 'auto'; %>">
-              <%= content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{video_id}?enablejsapi=1&origin=https://youtube-rails-dineshdhoom.c9users.io", id: 'recommend'+index.to_s, docUrl: @url) %>
+              <%= content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{video_id}?enablejsapi=1&origin=http://localhost:3000", id: 'recommend'+index.to_s, docUrl: @url) %>
             </div>
         <% end %>
       <% end %>
@@ -19,17 +19,27 @@
     // with id 'player1' and adds an event listener for state changes.
     var player1, player2, player3;
     function onYouTubeIframeAPIReady() {
-      console.log('vvvvvvvvvvvvvv');
-      console.log(document.getElementById('recommend0'))
-      this.url = document.getElementById('recommend0').getAttribute('docUrl');
-      this.videoUrl = document.getElementById('recommend0').getAttribute('src');
+      
       player1 = new YT.Player('recommend0', {
         events: {
           'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
         }
       });
-      console.log(player1);
+
+      player2 = new YT.Player('recommend1', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+
+      player3 = new YT.Player('recommend2', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
     }
     
     function onPlayerReady(event){
@@ -38,17 +48,20 @@
     
     function onPlayerStateChange(event) {
       console.log('insideeeeeeeeeeeeeeeeee')
+      var docUrl, videoUrl;
       switch(event.data) {
         case YT.PlayerState.PLAYING:
           console.log('playing')
-          
+          docUrl = event.target.a.getAttribute('docUrl');
+          videoUrl = event.target.getVideoUrl();
+          // console.log(event.target.getVideoData())
           var xmlhttp = new XMLHttpRequest();
 
           xmlhttp.onreadystatechange = function() {
               if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-                 if (xmlhttp.status == 200) {
-                     //document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
-                 }
+                  if (xmlhttp.status == 200) {
+                    
+                  }
                  else if (xmlhttp.status == 400) {
                     //alert('There was an error 400');
                  }
@@ -57,9 +70,11 @@
                  }
               }
           };
-          xmlhttp.open("POST", "https://youtube-rails-dineshdhoom.c9users.io/track", true);
-          xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-          xmlhttp.send(encodeURI('page_url=' + this.url + '&video_url='+this.videoUrl));
+
+          var postData = JSON.stringify({ tracking: { page_url: docUrl, video_url: videoUrl } });
+          xmlhttp.open("POST", "http://localhost:3000/trackings", true);
+          xmlhttp.setRequestHeader('Content-type', 'application/json');
+          xmlhttp.send(postData);
           break;
         case YT.PlayerState.PAUSED:
          console.log('paused')

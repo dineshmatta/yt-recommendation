@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Page url:</strong>
+  <%= @tracking.page_url %>
+</p>
+
+<p>
+  <strong>Video url:</strong>
+  <%= @tracking.video_url %>
+</p>
+
+<%= link_to 'Edit', edit_tracking_path(@tracking) %> |
+<%= link_to 'Back', trackings_path %>

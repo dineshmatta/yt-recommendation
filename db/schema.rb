@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203154921) do
+ActiveRecord::Schema.define(version: 20161204100138) do
 
   create_table "recommendations", force: :cascade do |t|
     t.text "url",      limit: 65535
