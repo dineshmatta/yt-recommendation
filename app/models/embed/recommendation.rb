@@ -3,7 +3,7 @@ class Embed::Recommendation < ActiveRecord::Base
 	serialize :keywords
 
 	def self.get_topics(url)
-		url = 'https://en.wikipedia.org/wiki/Elmo'
+		# url = 'https://en.wikipedia.org/wiki/Elmo'
 		## Get the topics from Alchemy API
 		results = AlchemyAPI::KeywordExtraction.new.search(url: url)
 
