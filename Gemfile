@@ -26,6 +26,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'figaro'
+
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'thin'
