@@ -1,6 +1,6 @@
 class Embed::RecommendationController < ApplicationController
 
-	before_action :set_host_url, only: [:show]
+	#before_action :set_host_url, only: [:show]
 
 	def show
 		## Get the url from params and decode it
@@ -31,7 +31,7 @@ class Embed::RecommendationController < ApplicationController
 	end
 
 	def set_host_url
-		@host_url = ENV[:host_url]
+		#@host_url = ENV[:host_url]
 	end
 
 end
