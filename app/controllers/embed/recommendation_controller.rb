@@ -1,4 +1,7 @@
 class Embed::RecommendationController < ApplicationController
+
+	before_action :set_host_url, only: [:show]
+
 	def show
 		## Get the url from params and decode it
     	@url = URI.decode(params[:url])
@@ -25,6 +28,10 @@ class Embed::RecommendationController < ApplicationController
 			Embed::Recommendation.create(url: link, keywords: [topics])
 			topics
 		end
+	end
+
+	def set_host_url
+		@host_url = ENV[:host_url]
 	end
 
 end
