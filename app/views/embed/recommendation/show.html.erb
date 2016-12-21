@@ -3,7 +3,7 @@
       <% @video_ids.each_with_index do |video_id, index| %>
         <% if video_id %>
             <div class="yt_video thumbnail embed-container" style="height:180px; width: <%=index == 0 || index == 1 ? '33%' : 'auto'; %>">
-              <%= content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{video_id}?enablejsapi=1&origin=http://localhost:3000", id: 'recommend'+index.to_s, docUrl: @url) %>
+              <%= content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{video_id}?enablejsapi=1&origin=#{ENV[:host_url]}", id: 'recommend'+index.to_s, docUrl: @url) %>
             </div>
         <% end %>
       <% end %>
@@ -72,7 +72,7 @@
           };
 
           var postData = JSON.stringify({ tracking: { page_url: docUrl, video_url: videoUrl } });
-          xmlhttp.open("POST", "http://localhost:3000/trackings", true);
+          xmlhttp.open("POST", <%=ENV[:host_url]%>+"/trackings", true);
           xmlhttp.setRequestHeader('Content-type', 'application/json');
           xmlhttp.send(postData);
           break;
