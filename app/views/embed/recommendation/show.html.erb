@@ -43,12 +43,11 @@
     }
     
     function onPlayerReady(event){
-      console.log("***************************************************");
+      console.log("Inside onPlayerReady.......");
     }
     
     function onPlayerStateChange(event) {
-      console.log('insideeeeeeeeeeeeeeeeee')
-      console.log(<%=ENV['host_url']%>);
+      console.log('Inside onPlayerStateChange......')
       var docUrl, videoUrl;
       switch(event.data) {
         case YT.PlayerState.PLAYING:
@@ -73,7 +72,7 @@
           };
 
           var postData = JSON.stringify({ tracking: { page_url: docUrl, video_url: videoUrl } });
-          xmlhttp.open("POST", <%=ENV['host_url']+'/trackings'%>, true);
+          xmlhttp.open("POST", "<%=ENV['host_url']+'/trackings'%>", true);
           xmlhttp.setRequestHeader('Content-type', 'application/json');
           xmlhttp.send(postData);
           break;
