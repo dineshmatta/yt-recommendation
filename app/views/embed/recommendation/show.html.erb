@@ -48,6 +48,7 @@
     
     function onPlayerStateChange(event) {
       console.log('insideeeeeeeeeeeeeeeeee')
+      console.log(<%=ENV['host_url']%>);
       var docUrl, videoUrl;
       switch(event.data) {
         case YT.PlayerState.PLAYING:
