@@ -32,7 +32,7 @@ module YtVideosV3
       allow do
         origins '*'
 
-        resource 'https://54.173.125.80/embed.js',
+        resource "#{ENV['host_url']+'/embed.js'}",
           :headers => :any,
           :methods => [:get, :post],
           :credentials => true,

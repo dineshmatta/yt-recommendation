@@ -2,6 +2,8 @@
 
 class Recommendation < ActiveRecord::Base
 	serialize :keywords
+	serialize :video_urls 
+	serialize :video_ids
 
 	#include ActiveModel::Model
 
@@ -27,14 +29,24 @@ class Recommendation < ActiveRecord::Base
 		return keywords[0]
 	end
 
-	def self.get_recommendations(keywords)
-		videos = Yt::Collections::Videos.new
-		videos_collection = videos.where(q: keywords, safe_search: 'none', order: 'relevance')
-		p videos_collection.size
+	def self.get_recommendations(keywords, url)
+		recommendation = self.where(url: url)
 
-		videos_collection.map(&:id)
-		ids = videos_collection.map(&:id).take(3)
-		return ids
+		if(recommendation.video_ids.length > 0)
+			return recommendation.video_ids
+		else 
+			videos = Yt::Collections::Videos.new
+			videos_collection = videos.where(q: keywords, safe_search: 'none', order: 'relevance')
+			#videos_collection = videos.where(part: 'snippet', q: keywords, type: 'video', safe_search: 'none', relevanceLanguage: 'en')
+			p videos_collection.size
+
+			videos_collection.map(&:id)
+			ids = videos_collection.map(&:id).take(3)
+			recommendation.video_ids = ids
+			recommendation.video_urls = ids.collect {|c| "https://youtu.be/"+c}
+			recommendation.save
+			return ids
+		end
 	end
 
 end

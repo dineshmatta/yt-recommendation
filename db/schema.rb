@@ -11,11 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204100138) do
+ActiveRecord::Schema.define(version: 20161228173115) do
 
   create_table "recommendations", force: :cascade do |t|
-    t.text "url",      limit: 65535
-    t.text "keywords", limit: 65535
+    t.text "url",        limit: 65535
+    t.text "keywords",   limit: 65535
+    t.text "video_urls", limit: 65535
+    t.text "video_ids",  limit: 65535
   end
 
   create_table "trackings", force: :cascade do |t|

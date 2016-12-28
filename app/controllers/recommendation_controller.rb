@@ -14,7 +14,7 @@ class RecommendationController < ApplicationController
 	  	topics = fetch_topics(link)
 
 	  	##Step 2 : Get the recommended videos
-	  	@video_ids = Recommendation.get_recommendations(topics)
+	  	@video_ids = Recommendation.get_recommendations(topics, link)
 
 	  	render "show"
 		else
