@@ -32,7 +32,7 @@ class Recommendation < ActiveRecord::Base
 	def self.get_recommendations(keywords, url)
 		recommendation = self.where(url: url).first
 
-		if(recommendation.video_ids.length > 0)
+		if(recommendation.video_ids)
 			return recommendation.video_ids
 		else 
 			videos = Yt::Collections::Videos.new
