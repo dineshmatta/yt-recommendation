@@ -23,7 +23,7 @@ class Embed::Recommendation < ActiveRecord::Base
 	end
 
 	def self.get_recommendations(keywords, url)
-		recommendation = self.where(url: url)
+		recommendation = self.where(url: url).first
 
 		if(recommendation.video_ids)
 			return recommendation.video_ids
