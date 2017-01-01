@@ -4,12 +4,6 @@ class Embed::Recommendation < ActiveRecord::Base
 	serialize :video_ids
 
 
-	before_save do
-	  self.keywords = YAML.parse(self.keywords).to_ruby
-	  self.video_urls = YAML.parse(self.video_urls).to_ruby
-	  self.video_ids = YAML.parse(self.video_ids).to_ruby
-	end
-
 	def self.get_topics(url)
 		# url = 'https://en.wikipedia.org/wiki/Elmo'
 		## Get the topics from Alchemy API
