@@ -1,7 +1,7 @@
 class Embed::Recommendation < ActiveRecord::Base
-	serialize :keywords
-	serialize :video_urls 
-	serialize :video_ids
+	serialize :keywords, Array
+	serialize :video_urls, Array 
+	serialize :video_ids, Array
 
 
 	def self.get_topics(url)
