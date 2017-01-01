@@ -26,8 +26,8 @@ class Embed::Recommendation < ActiveRecord::Base
 	def self.get_recommendations(keywords, url)
 		recommendation = self.where(url: url).first
 
-		if(recommendation.video_ids.length > 0)
-			return recommendation.video_ids
+		if(recommendation.video_urls.length > 0)
+			return recommendation.video_urls
 		else 
 			videos = Yt::Collections::Videos.new
 			videos_collection = videos.where(q: keywords, safe_search: 'none', order: 'relevance')
@@ -37,9 +37,9 @@ class Embed::Recommendation < ActiveRecord::Base
 			videos_collection.map(&:id)
 			ids = videos_collection.map(&:id).take(3)
 			recommendation.video_ids = ids
-			recommendation.video_urls = ids.collect {|c| "https://youtu.be/"+c}
+			recommendation.video_urls = ids.collect {|c| "https://www.youtube.com/embed/"+c}
 			recommendation.save
-			return ids
+			return recommendation.video_urls
 		end
 	end
 
