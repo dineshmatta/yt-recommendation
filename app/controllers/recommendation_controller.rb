@@ -37,6 +37,6 @@ class RecommendationController < ApplicationController
   end
   
   def user_params
-		params.require(:recommendation).permit(:url, :keywords)
+		params.require(:recommendation).permit(:url, :keywords => [])
   end
 end
