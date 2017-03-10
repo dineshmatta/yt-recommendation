@@ -5,6 +5,6 @@ Yt.configure do |config|
 end
 
 AlchemyAPI.configure do |config|
-  config.apikey = "1bac5f4ef1e22ee88fa6eadee3f85fe81ec45967"
+  config.apikey = "ad0128d092d08fcb49ae98e22963e8c3341c9ce7"
   config.output_mode = :json # not yet supported
 end
