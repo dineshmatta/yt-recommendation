@@ -30,4 +30,23 @@ class BrightCoveRecommendation < ActiveRecord::Base
 		return keywords[0]
 	end
 
+	def self.getData(url)
+		recommendation = self.where(url: url).first
+		if(recommendation.video_urls.length > 0)
+			return recommendation.video_urls
+		else 
+			return nil
+		end
+		
+	end
+
+	def self.saveData(url, video_ids)
+		recommendation = self.where(url: url).first
+		ids = video_ids.take(3)
+		recommendation.video_ids = ids
+		recommendation.video_urls = ids.collect {|c| "https://players.brightcove.net/4679196299001/default_default/index.html?videoId="+c}
+		recommendation.save
+		return recommendation.video_urls
+	end
+
 end

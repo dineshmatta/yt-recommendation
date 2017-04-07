@@ -17,8 +17,16 @@ class BrightCoveRecommendationController < ApplicationController
 			## Step 1 - check if topics are already present for entered URL, if not present, then fetch from Alchemy
 			topics = fetch_topics(link)
 
-			## Step 2 : Get the recommended videos
-		 	@video_ids = BrightCoveService.new().search_videos(topics)
+			## Step 2 : Check if video urls are already present in the db
+		 	@video_urls = BrightCoveRecommendation.getData(link)
+
+		 	if(@video_urls == nil)
+		 		## Step 3 : Get the recommended videos
+		 		@video_ids = BrightCoveService.new().search_videos(topics)
+
+		 		## Step 4 : Save the recommended video for future use
+		 		@video_urls = BrightCoveRecommendation.saveData(link, @video_ids)
+		 	end
 
 		 	render "show"
 

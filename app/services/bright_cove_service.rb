@@ -22,7 +22,6 @@ class BrightCoveService
     escaped_keywords = URI.escape(keywords, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
     video_response = fetch_videos(access_token, escaped_keywords)
     video_ids = get_video_ids(video_response)
-    video_ids
   end
 
   private
