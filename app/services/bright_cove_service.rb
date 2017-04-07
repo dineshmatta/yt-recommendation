@@ -29,7 +29,7 @@ class BrightCoveService
   def fetch_videos(access_token, query)
 
     begin
-      ## Make API call to paxful 
+      ## Make API call to brightCov 
       response = RestClient::Request.execute( method: :get, 
                                               url: formate_url_with_query_string(query), 
                                               headers: {
@@ -48,7 +48,7 @@ class BrightCoveService
   def get_access_token
     encodedData = 'Basic ' + Base64.strict_encode64(configatron.clientId + ':' + configatron.secret)
     begin
-      ## Make API call to paxful 
+      ## Make API call to brightCov 
       response = RestClient::Request.execute( method: :post, 
                                               url: @access_token_url, 
                                               payload: get_request_body,
