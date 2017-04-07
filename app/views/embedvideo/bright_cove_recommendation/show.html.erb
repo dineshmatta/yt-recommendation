@@ -1,0 +1,11 @@
+<% if @video_ids.any? %>
+  <div class="container">
+      <% @video_ids.each_with_index do |video_id, index| %>
+        <% if video_id %>
+            <div class="yt_video thumbnail embed-container" style="height:180px; width: <%=index == 0 || index == 1 ? '33%' : 'auto'; %>">
+              <%= content_tag(:iframe, nil, src: "http://players.brightcove.net/4679196299001/default_default/index.html?videoId=#{video_id}", id: 'recommend'+index.to_s, docUrl: @url) %>
+            </div>
+        <% end %>
+      <% end %>
+  </div>
+<% end %>

@@ -50,11 +50,21 @@ gem 'turbolinks'
 
 gem 'yt', '~> 0.13.7'
 
+gem 'brightcove-api'
+
+## Rest client gem to make API calls to Paxful
+gem 'rest-client', '>=2.0'
+
+gem 'oauth2'
+
 gem 'rails-observers'
 
 gem 'omniauth-google-oauth2'
 
 gem 'active_type', '0.3.1'
+
+## Simple configuration gem
+gem 'configatron'
 
 #####Alchemy gem
 gem 'alchemy-api-rb', :require => 'alchemy_api'

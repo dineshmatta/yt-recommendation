@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Get Recommended videos</h1>
+  <h1>Get BrightCove Recommended videos</h1>
 
-  <%= form_for @recommendation, url: fetch_recommendations_path, remote: true  do |f| %>
+  <%= form_for @recommendation, url: bright_cove_fetch_recommendations_path, remote: true  do |f| %>
     <div class="form-group">
       <div><%= f.text_field :url, class: 'form-control', placeholder: 'Enter any URL', required: true %></div>
       <span class="error-message hide text-danger">Invalid Link</span>

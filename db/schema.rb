@@ -11,20 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228173115) do
+ActiveRecord::Schema.define(version: 20170406190808) do
+
+  create_table "bright_cove_recommendations", force: :cascade do |t|
+    t.text     "url",        limit: 65535
+    t.text     "keywords",   limit: 65535
+    t.text     "video_urls", limit: 65535
+    t.text     "video_ids",  limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "recommendations", force: :cascade do |t|
     t.text "url",        limit: 65535
     t.text "keywords",   limit: 65535
     t.text "video_urls", limit: 65535
     t.text "video_ids",  limit: 65535
-  end
-
-  create_table "trackings", force: :cascade do |t|
-    t.text     "page_url",   limit: 65535
-    t.text     "video_url",  limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
   end
 
 end
