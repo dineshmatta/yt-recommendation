@@ -8,14 +8,14 @@ class Embedvideo::BrightCoveRecommendationController < ApplicationController
     	topics = fetch_topics(@url)#Embed::Recommendation.get_topics(url)
 
     	## Step 2 : Check if video urls are already present in the db
-	 	@video_urls = BrightCoveRecommendation.getData(link)
+	 	@video_urls = BrightCoveRecommendation.getData(@url)
 
 	 	if(@video_urls == nil)
 	 		## Step 3 : Get the recommended videos
 	 		@video_ids = BrightCoveService.new().search_videos(topics)
 
 	 		## Step 4 : Save the recommended video for future use
-	 		@video_urls = BrightCoveRecommendation.saveData(link, @video_ids)
+	 		@video_urls = BrightCoveRecommendation.saveData(@url, @video_ids)
 	 	end
     
 		## Get the recommended videos from extracted keywords
